@@ -1,25 +1,33 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        メッセージ一覧
-    </div>
-    <div class="panel-body">
-        <% @messages.each do |message| %>
-            <span class="label label-info"><%= message.name %></span>
-            <%= message.body %>
-            <br />
-        <% end %>
-    </div>
-</div>
-
-<div class="container">
-<%= form_for(Message.new) do |f| %>
-    
-        <div class="input-group">
-            <%= f.text_area :body, :class => "test1 test2" %>
+<!-- TimeLine表示 -->
+<% if(@messages.length == 0) then %>
+    <!-- メッセージ件数0件処理 -->
+    <span class="msg-list-group-item-textarea">no message</span>
+<% else %>
+    <div class="panel panel-default msg-panel">
+        <div class="list-group">
+            <% @messages.each do |message| %>
+                <div class="list-group-item msg-list-group-item">
+                    <div class="msg-list-group-item-header">
+                        <span class="list-group-item-text msg-list-group-item-text"><%= message.name %></span>
+                    </div>
+                    <div class="msg-list-group-item-textarea">
+                        <%= simple_format(h(message.body)) %>
+                    </div>
+                </div>
+            <% end %>
         </div>
-        <div>
-            <%= f.text_field :name %><%= f.submit %>
-        </div>
-    
+    </div>
 <% end %>
-</div>
+
+<hr  class="msg-separator" role="separator" aria-hidden="true">
+
+<!-- フォーム入力 -->
+<%= form_for(Message.new, :html => {:class => "msg-flame-form"}) do |f| %>
+    <div>
+        <%= f.text_area(:body, :class => "msg-form-textarea", :placeholder => "Message") %>
+    </div>
+    <div align="right">
+        <%= f.text_field(:name, :class => "msg-form-text", :placeholder => "Name") %>
+        <%= f.submit("Send", :class => "btn btn-primary btn-sm msg-form-btn") %>
+    </div>
+<% end %>
