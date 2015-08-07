@@ -1,18 +1,28 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        メッセージ一覧
+<!-- TimeLine表示 -->
+<% if(@messages.length == 0) then %>
+    <!-- メッセージ件数0件処理 -->
+    <span class="msg-list-group-item-textarea">no message</span>
+<% else %>
+    <div class="panel panel-default msg-panel">
+        <div class="list-group">
+            <% @messages.each do |message| %>
+                <div class="list-group-item msg-list-group-item">
+                    <div class="msg-list-group-item-header">
+                        <span class="list-group-item-text msg-list-group-item-text"><%= message.name %></span>
+                        (<%= link_to "edit", edit_message_path(message) %>
+                        <%= link_to "destroy", message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+                        )
+                    </div>
+                    <div class="msg-list-group-item-textarea">
+                        <%= simple_format(h(message.body)) %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div class="panel-body">
-        <% @messages.each do |message| %>
-            <span class="label label-info"><%= message.name %></span>
-            <%= message.body %>
-            (<%= link_to "edit", edit_message_path(message) %>
-            <%= link_to "destroy", message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
-            )
-            <br />
-        <% end %>
-    </div>
-</div>
+<% end %>
+
+<hr  class="msg-separator" role="separator" aria-hidden="true">
 
 <% #部分テンプレートを読み込んでいる %>
 <%= render 'form' %>

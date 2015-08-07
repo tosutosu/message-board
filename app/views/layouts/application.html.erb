@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+  <!-- hoge -->
+  <meta charset="utf-8">
   <title>MessageBoard</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="application.css">
 </head>
-<body>
-  <nav class="navbar" />
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Message Board</a>
+<body class="container msg-body">
+    <div class="msg-flame">
+        <header>
+            <h1>Message Board</h1>
+        </header>
+        <session>
+            <hr class="msg-separator" role="separator" aria-hidden="true">
+            
+            <%= yield %>
+            
+            <hr class="msg-separator" role="separator" aria-hidden="true">
+        </session>
+        <footer>
+            <p>&copy; 2015 Toshihiro Chida</p>
+        </footer>
     </div>
-  </div>
-  <div class="container">
-    <% if notice %>
-      <div class="alert alert-info">
-        <%= notice %>
-      </div>
-    <% end %>
-    
-    <%= yield %>
-  </div>
 </body>
 </html>
