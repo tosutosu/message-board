@@ -7,12 +7,17 @@
         <div class="list-group">
             <% @messages.each do |message| %>
                 <div class="list-group-item msg-list-group-item">
-                    <div class="msg-list-group-item-header">
-                        <span class="list-group-item-text msg-list-group-item-text"><%= message.name %></span>
-                        (<%= link_to "edit", edit_message_path(message) %>
-                        <%= link_to "destroy", message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
-                        )
+                     <div class="msg-list-group-item-header">
+                        <div class="msg-list-group-item-header-left">
+                            <span class="list-group-item-text msg-list-group-item-text"><%= message.name %></span>
+                            &nbsp;&nbsp;<span class="list-group-item-text msg-list-group-item-age"><%= message.age %>year old</span>
+                        </div>
+                        <div class="msg-list-group-item-header-right">
+                            <%= link_to "edit", edit_message_path(message) %>
+                            <%= link_to "destroy", message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+                        </div>
                     </div>
+
                     <div class="msg-list-group-item-textarea">
                         <%= simple_format(h(message.body)) %>
                     </div>

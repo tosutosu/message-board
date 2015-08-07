@@ -70,11 +70,22 @@ div.msg-list-group-item-header {
     background-color: #f0f8ff;
     border-bottom: solid 1px #87cefa;
 }
+div.msg-list-group-item-header-left {
+    text-align: left;
+    float: left;
+}
+div.msg-list-group-item-header-right {
+    text-align: right;
+}
 div.msg-list-group-item-textarea {
     padding-left: 10px;
 }
 span.msg-list-group-item-text {
     font-style: italic;
+}
+span.msg-list-group-item-age {
+    font-style: normal;
+    font-size: 0.80em;
 }
 hr.msg-separator {
     margin-top: 10px;
