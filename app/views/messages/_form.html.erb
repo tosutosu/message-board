@@ -1,4 +1,5 @@
-<%= form_for(Message.new) do |f| %>
+<!-- フォーム入力 -->
+<%= form_for(Message.new, :html => {:class => "msg-flame-form"}) do |f| %>
     <% if @message.errors.present? %>
         <div class="alert alert-danger">
             <%= alert %>
@@ -12,10 +13,11 @@
         </div>
     <% end %>
     
-    名前：
-    <%= f.text_field :name %>
-    
-    内容：
-    <%= f.text_field :body %>
-    <%= f.submit class: "btn btn-sm btn-primary" %>
+    <div>
+        <%= f.text_area(:body, :class => "msg-form-textarea", :placeholder => "Message") %>
+    </div>
+    <div align="right">
+        <%= f.text_field(:name, :class => "msg-form-text", :placeholder => "Name") %>
+        <%= f.submit("Send", :class => "btn btn-primary btn-sm msg-form-btn") %>
+    </div>
 <% end %>
