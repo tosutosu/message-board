@@ -1,5 +1,5 @@
 <!-- フォーム入力 -->
-<%= form_for(Message.new, :html => {:class => "msg-flame-form"}) do |f| %>
+<%= form_for(@message, :html => {:class => "msg-flame-form"}) do |f| %>
     <% if @message.errors.present? %>
         <div class="alert alert-danger">
             <%= alert %>
